@@ -1,11 +1,17 @@
 import devtoolsJson from 'vite-plugin-devtools-json';
-import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import { sveltekit } from '@sveltejs/kit/vite';
+import UnoCSS from '@unocss/svelte-scoped/vite';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit(), devtoolsJson()],
+	plugins: [
+		UnoCSS({
+			injectReset: '@unocss/reset/tailwind.css'
+		}),
+		sveltekit(),
+		devtoolsJson()
+	],
 
 	test: {
 		expect: { requireAssertions: true },
